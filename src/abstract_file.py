@@ -3,7 +3,6 @@ from datetime import datetime
 
 class AbstractFile(ABC):
 
-    __DATE_FORMAT = '%y-%m-%d %H:%M:%S'
     __DATE_POS = (1, 0) # (col, row from date in data frame)
 
     def __init__(self, path: str, df):
@@ -14,9 +13,14 @@ class AbstractFile(ABC):
 
         self.__date = date
 
-
-    def getYear(self) -> int:
+    def getDate(self) -> datetime|None:
         if (self.__date == None):
             return None
 
-        return self.__date.year
+        return self.__date
+
+    def getPath(self) -> str:
+        return self.__path
+
+    def setPath(self, n_path: str):
+        self.__path = n_path
